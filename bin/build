@@ -1,0 +1,26 @@
+#!/bin/bash
+
+for repo in contracts/*/; do
+  cd "$repo" || {
+    printf "\n\n\e[1;31mFAILED:\e[0m no contracts built beyond \e[1;34m%s\e[0m\n" "$repo"
+    exit 1
+  }
+
+  GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  if [[
+    (
+      main != $GIT_BRANCH && master != $GIT_BRANCH
+    ) || $(git status --short | wc -c) -ne 0
+  ]]; then
+    printf "========== \e[1;31m NOT building %s\e[0m ==========\n" "$repo";
+    git status "$@"
+    printf "\n";
+    cd ../..
+    continue
+  fi
+
+  printf "========== \e[1;34m building %s\e[0m ==========\n" "$repo";
+  raen build --release --workspace
+
+  cd ../..
+done
