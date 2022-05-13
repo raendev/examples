@@ -9,7 +9,7 @@ for repo in contracts/*/; do
   GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
   if [[
     (
-      main != $GIT_BRANCH && master != $GIT_BRANCH
+      main != "$GIT_BRANCH" && master != "$GIT_BRANCH"
     ) || $(git status --short | wc -c) -ne 0
   ]]; then
     printf "========== \e[1;31m NOT benchmarking %s\e[0m ==========\n" "$repo";
