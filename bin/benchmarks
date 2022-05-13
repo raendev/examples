@@ -19,8 +19,14 @@ for repo in contracts/*/; do
     continue
   fi
 
-  printf "========== \e[1;34m building %s\e[0m ==========\n" "$repo";
-  printf "\e[1;31m TODO: implement benchmarking\e[0m\n";
+  printf "========== benchmarking \e[1;34m %s\e[0m ==========\n" "$repo";
+
+  # TODO: implement real benchmarking with the following
+  echo "original:"
+  ls -lh target/wasm32-unknown-unknown/release/*.wasm
+
+  echo "with raen:"
+  ls -lh target/res/*.wasm
 
   cd ../..
 done

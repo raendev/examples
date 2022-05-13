@@ -20,7 +20,7 @@ for repo in contracts/*/; do
   fi
 
   printf "========== \e[1;34m building %s\e[0m ==========\n" "$repo";
-  raen build --release --workspace
+  raen build --release --workspace --standards
 
   cd ../..
 done
