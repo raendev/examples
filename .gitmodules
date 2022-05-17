@@ -4,3 +4,6 @@
 [submodule "contracts/status-message"]
 	path = contracts/status-message
 	url = git@github.com:near-examples/rust-status-message.git
+[submodule "contracts/nft-tutorial"]
+	path = contracts/nft-tutorial
+	url = git@github.com:AhaLabs/nft-tutorial.git
