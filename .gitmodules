@@ -4,3 +4,6 @@
 [submodule "contracts/nft-tutorial"]
 	path = contracts/nft-tutorial
 	url = git@github.com:AhaLabs/nft-tutorial.git
+[submodule "contracts/rust-counter"]
+	path = contracts/rust-counter
+	url = git@github.com:AhaLabs/rust-counter.git
