@@ -1,6 +1,6 @@
 [submodule "contracts/status-message"]
 	path = contracts/status-message
-	url = https://github.com:ahalabs/rust-status-message.git
+	url = https://github.com/AhaLabs/rust-status-message.git
 [submodule "contracts/nft-tutorial"]
 	path = contracts/nft-tutorial
 	url = https://github.com/AhaLabs/nft-tutorial.git
