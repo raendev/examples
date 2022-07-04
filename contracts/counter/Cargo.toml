@@ -1,0 +1,27 @@
+[package]
+name = "counter"
+version = "0.0.1"
+authors = ["Aha Labs <team@ahalabs.dev>"]
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+near-sdk = "4.0.0"
+
+[dev-dependencies]
+anyhow = "1.0"
+near-units = "0.2.0"
+# arbitrary_precision enabled for u128 types that workspaces requires for Balance types
+serde_json = { version = "1.0", features = ["arbitrary_precision"] }
+tokio = { version = "1.18.1", features = ["full"] }
+workspaces = "0.3.0"
+lazy-static-include = "3.1.2"
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
