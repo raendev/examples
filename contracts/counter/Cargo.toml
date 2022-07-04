@@ -11,7 +11,7 @@ crate-type = ["cdylib"]
 near-sdk = "4.0.0"
 
 [profile.dev]
-overflow-checks = false # default: true; see https://doc.rust-lang.org/cargo/reference/profiles.html#dev
+overflow-checks = true
 
 [profile.release]
 codegen-units = 1
@@ -19,4 +19,4 @@ opt-level = "z"
 lto = true
 debug = false
 panic = "abort"
-overflow-checks = false # default: false; see https://doc.rust-lang.org/cargo/reference/profiles.html#release
+overflow-checks = true

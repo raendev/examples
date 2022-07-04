@@ -6,9 +6,15 @@ use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{log, near_bindgen};
 
 #[near_bindgen]
-#[derive(Default, BorshDeserialize, BorshSerialize)]
+#[derive(BorshDeserialize, BorshSerialize)]
 pub struct Counter {
     val: i8,
+}
+
+impl Default for Counter {
+    fn default() -> Self {
+        Self { val: 127 }
+    }
 }
 
 #[near_bindgen]
@@ -29,6 +35,13 @@ impl Counter {
     pub fn decrement(&mut self) -> i8 {
         self.val -= 1;
         log!("Decreased number to {}", self.val);
+        self.val
+    }
+
+    /// Public method: Set the counter.
+    pub fn set_num(&mut self, num: i8) -> i8 {
+        self.val = num;
+        log!("Set number to {}", num);
         self.val
     }
 }
@@ -56,5 +69,19 @@ mod tests {
         let mut contract = Counter { val: 0 };
         contract.decrement();
         assert_eq!(-1, contract.get_num());
+    }
+
+    #[test]
+    #[should_panic]
+    fn panics_on_overflow() {
+        let mut contract = Counter { val: 127 };
+        contract.increment();
+    }
+
+    #[test]
+    #[should_panic]
+    fn panics_on_underflow() {
+        let mut contract = Counter { val: -128 };
+        contract.decrement();
     }
 }
