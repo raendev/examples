@@ -10,14 +10,8 @@ crate-type = ["cdylib"]
 [dependencies]
 near-sdk = "4.0.0"
 
-[dev-dependencies]
-anyhow = "1.0"
-near-units = "0.2.0"
-# arbitrary_precision enabled for u128 types that workspaces requires for Balance types
-serde_json = { version = "1.0", features = ["arbitrary_precision"] }
-tokio = { version = "1.18.1", features = ["full"] }
-workspaces = "0.3.0"
-lazy-static-include = "3.1.2"
+[profile.dev]
+overflow-checks = false # default: true; see https://doc.rust-lang.org/cargo/reference/profiles.html#dev
 
 [profile.release]
 codegen-units = 1
@@ -25,3 +19,4 @@ opt-level = "z"
 lto = true
 debug = false
 panic = "abort"
+overflow-checks = false # default: false; see https://doc.rust-lang.org/cargo/reference/profiles.html#release

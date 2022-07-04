@@ -57,18 +57,4 @@ mod tests {
         contract.decrement();
         assert_eq!(-1, contract.get_num());
     }
-
-    #[test]
-    #[should_panic]
-    fn panics_on_overflow() {
-        let mut contract = Counter { val: 127 };
-        contract.increment();
-    }
-
-    #[test]
-    #[should_panic]
-    fn panics_on_underflow() {
-        let mut contract = Counter { val: -128 };
-        contract.decrement();
-    }
 }
